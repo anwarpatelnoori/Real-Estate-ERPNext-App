@@ -1,0 +1,715 @@
+{% extends 'templates/estate_base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+
+<div class="slide-one-item home-slider owl-carousel">
+
+  <div class="site-blocks-cover overlay" style="background-image: url(/assets/estate_app/homeland/images/hero_bg_1.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+    <div class="container">
+      <div class="row align-items-center justify-content-center text-center">
+        <div class="col-md-10">
+          <span class="d-inline-block bg-success text-white px-3 mb-3 property-offer-type rounded">For Rent</span>
+          <h1 class="mb-2">871 Crenshaw Blvd</h1>
+          <p class="mb-5"><strong class="h2 text-success font-weight-bold">$2,250,500</strong></p>
+          <p><a href="#" class="btn btn-white btn-outline-white py-3 px-5 rounded-0 btn-2">See Details</a></p>
+        </div>
+      </div>
+    </div>
+  </div>  
+
+  <div class="site-blocks-cover overlay" style="background-image: url(/assets/estate_app/homeland/images/hero_bg_2.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+    <div class="container">
+      <div class="row align-items-center justify-content-center text-center">
+        <div class="col-md-10">
+          <span class="d-inline-block bg-danger text-white px-3 mb-3 property-offer-type rounded">For Sale</span>
+          <h1 class="mb-2">625 S. Berendo St</h1>
+          <p class="mb-5"><strong class="h2 text-success font-weight-bold">$1,000,500</strong></p>
+          <p><a href="#" class="btn btn-white btn-outline-white py-3 px-5 rounded-0 btn-2">See Details</a></p>
+        </div>
+      </div>
+    </div>
+  </div>  
+
+</div>
+
+
+<div class="site-section site-section-sm pb-0">
+  <div class="container">
+    <div class="row">
+      <form class="form-search col-md-12" style="margin-top: -100px;">
+        <div class="row  align-items-end">
+          <div class="col-md-3">
+            <label for="list-types">Property Types</label>
+            <div class="select-wrap">
+              <span class="icon icon-arrow_drop_down"></span>
+              <select name="types" id="list-types" class="form-control d-block rounded-0">
+                {% for type in types %}
+                <option value="{{type.name}}">{{type.name}}</option>
+                {% endfor %}
+                
+                <!-- <option value="">Commercial Building</option>
+                <option value="">Land Property</option> -->
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <label for="offer-types">Offer Type</label>
+            <div class="select-wrap">
+              <span class="icon icon-arrow_drop_down"></span>
+              <select name="Status" id="offer-types" class="form-control d-block rounded-0">                
+                
+                <option value="Sale">Sale</option>
+                <option value="Rent">Rent</option>
+                <option value="Lease">Lease</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <label for="select-city">Select City</label>
+            <div class="select-wrap">
+              <span class="icon icon-arrow_drop_down"></span>
+              <select name="city" id="select-city" class="form-control d-block rounded-0">
+                
+                {% for city in cities %}
+                <option value="{{city.name}}">{{city.name}}</option>
+                {% endfor %}
+                <!-- <option value="">Brooklyn</option>
+                <option value="">London</option>
+                <option value="">Japan</option>
+                <option value="">Philippines</option> -->
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <input type="submit" class="btn btn-success text-white btn-block rounded-0" value="Search">
+          </div>
+        </div>
+      </form>
+    </div>  
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="view-options bg-white py-3 px-3 d-md-flex align-items-center">
+          <div class="mr-auto">
+            <a href="index.html" class="icon-view view-module active"><span class="icon-view_module"></span></a>
+            <a href="view-list.html" class="icon-view view-list"><span class="icon-view_list"></span></a>
+            
+          </div>
+          <div class="ml-auto d-flex align-items-center">
+            <div>
+              <a href="#" class="view-list px-3 border-right active">All</a>
+              <a href="#" class="view-list px-3 border-right">Rent</a>
+              <a href="#" class="view-list px-3">Sale</a>
+            </div>
+
+
+            <div class="select-wrap">
+              <span class="icon icon-arrow_drop_down"></span>
+              <select class="form-control form-control-sm d-block rounded-0">
+                <option value="">Sort by</option>
+                <option value="">Price Ascending</option>
+                <option value="">Price Descending</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+  </div>
+</div>
+
+<div class="site-section site-section-sm bg-light">
+  <div class="container">
+  
+    <div class="row mb-5">
+      {% for property in properties %}
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="property-entry h-100">
+          <a href="/property/detail/{{property.name}}" class="property-thumbnail">
+            <div class="offer-type-wrap">
+              <span class="offer-type bg-{% if property.status==Rent %}warning{% elif property.status=='Sale' %}success{% elif property.status=='Lease' %}danger{% endif %}"><b>{{property.status}}</b></span>
+            </div>
+            <img img src = "{{property.image}}" alt="Image" class="img-fluid" height="400px" width="350px">
+          </a>
+          <div class="p-4 property-body">
+            <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+            <h2 class="property-title"><a href="/property/detail/{{property.name}}">{{property.property_name}}</a></h2>
+            <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> {{property.address}}</span>
+            <strong class="property-price text-primary mb-3 d-block text-success">{{ frappe.format(property.grand_total,{'fieldtype': 'Currency'})}}</strong>
+            <!-- </ul> -->
+
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+      <!-- <div class="col-md-6 col-lg-4 mb-4">
+        <div class="property-entry h-100">
+          <a href="property-details.html" class="property-thumbnail">
+            <div class="offer-type-wrap">
+              <span class="offer-type bg-danger">Sale</span>
+              <span class="offer-type bg-success">Rent</span>
+            </div>
+            <img img src = "/assets/estate_app/homeland/images/img_2.jpg" alt="Image" class="img-fluid">
+          </a>
+          <div class="p-4 property-body">
+            <a href="#" class="property-favorite active"><span class="icon-heart-o"></span></a>
+            <h2 class="property-title"><a href="property-details.html">871 Crenshaw Blvd</a></h2>
+            <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 1 New York Ave, Warners Bay, NSW 2282</span>
+            <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
+            <ul class="property-specs-wrap mb-3 mb-lg-0">
+              <li>
+                <span class="property-specs">Beds</span>
+                <span class="property-specs-number">2 <sup>+</sup></span>
+                
+              </li>
+              <li>
+                <span class="property-specs">Baths</span>
+                <span class="property-specs-number">2</span>
+                
+              </li>
+              <li>
+                <span class="property-specs">SQ FT</span>
+                <span class="property-specs-number">1,620</span>
+                
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="property-entry h-100">
+          <a href="property-details.html" class="property-thumbnail">
+            <div class="offer-type-wrap">
+              <span class="offer-type bg-info">Lease</span>
+            </div>
+            <img img src = "/assets/estate_app/homeland/images/img_3.jpg" alt="Image" class="img-fluid">
+          </a>
+          <div class="p-4 property-body">
+            <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+            <h2 class="property-title"><a href="property-details.html">853 S Lucerne Blvd</a></h2>
+            <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 853 S Lucerne Blvd Unit 101 Los Angeles, CA 90005</span>
+            <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
+            <ul class="property-specs-wrap mb-3 mb-lg-0">
+              <li>
+                <span class="property-specs">Beds</span>
+                <span class="property-specs-number">2 <sup>+</sup></span>
+                
+              </li>
+              <li>
+                <span class="property-specs">Baths</span>
+                <span class="property-specs-number">2</span>
+                
+              </li>
+              <li>
+                <span class="property-specs">SQ FT</span>
+                <span class="property-specs-number">5,500</span>
+                
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="property-entry h-100">
+          <a href="property-details.html" class="property-thumbnail">
+            <div class="offer-type-wrap">
+              <span class="offer-type bg-danger">Sale</span>
+              <span class="offer-type bg-success">Rent</span>
+            </div>
+            <img img src = "/assets/estate_app/homeland/images/img_4.jpg" alt="Image" class="img-fluid">
+          </a>
+          <div class="p-4 property-body">
+            <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+            <h2 class="property-title"><a href="property-details.html">625 S. Berendo St</a></h2>
+            <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 625 S. Berendo St Unit 607 Los Angeles, CA 90005</span>
+            <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
+            <ul class="property-specs-wrap mb-3 mb-lg-0">
+              <li>
+                <span class="property-specs">Beds</span>
+                <span class="property-specs-number">2 <sup>+</sup></span>
+                
+              </li>
+              <li>
+                <span class="property-specs">Baths</span>
+                <span class="property-specs-number">2</span>
+                
+              </li>
+              <li>
+                <span class="property-specs">SQ FT</span>
+                <span class="property-specs-number">7,000</span>
+                
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="property-entry h-100">
+          <a href="property-details.html" class="property-thumbnail">
+            <div class="offer-type-wrap">
+              <span class="offer-type bg-danger">Sale</span>
+              <span class="offer-type bg-success">Rent</span>
+            </div>
+            <img img src = "/assets/estate_app/homeland/images/img_5.jpg" alt="Image" class="img-fluid">
+          </a>
+          <div class="p-4 property-body">
+            <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+            <h2 class="property-title"><a href="property-details.html">871 Crenshaw Blvd</a></h2>
+            <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 1 New York Ave, Warners Bay, NSW 2282</span>
+            <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
+            <ul class="property-specs-wrap mb-3 mb-lg-0">
+              <li>
+                <span class="property-specs">Beds</span>
+                <span class="property-specs-number">2 <sup>+</sup></span>
+                
+              </li>
+              <li>
+                <span class="property-specs">Baths</span>
+                <span class="property-specs-number">2</span>
+                
+              </li>
+              <li>
+                <span class="property-specs">SQ FT</span>
+                <span class="property-specs-number">1,620</span>
+                
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="property-entry h-100">
+          <a href="property-details.html" class="property-thumbnail">
+            <div class="offer-type-wrap">
+              <span class="offer-type bg-info">Lease</span>
+            </div>
+            <img img src = "/assets/estate_app/homeland/images/img_6.jpg" alt="Image" class="img-fluid">
+          </a>
+          <div class="p-4 property-body">
+            <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+            <h2 class="property-title"><a href="property-details.html">853 S Lucerne Blvd</a></h2>
+            <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 853 S Lucerne Blvd Unit 101 Los Angeles, CA 90005</span>
+            <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
+            <ul class="property-specs-wrap mb-3 mb-lg-0">
+              <li>
+                <span class="property-specs">Beds</span>
+                <span class="property-specs-number">2 <sup>+</sup></span>
+                
+              </li>
+              <li>
+                <span class="property-specs">Baths</span>
+                <span class="property-specs-number">2</span>
+                
+              </li>
+              <li>
+                <span class="property-specs">SQ FT</span>
+                <span class="property-specs-number">5,500</span>
+                
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="property-entry h-100">
+          <a href="property-details.html" class="property-thumbnail">
+            <div class="offer-type-wrap">
+              <span class="offer-type bg-danger">Sale</span>
+              <span class="offer-type bg-success">Rent</span>
+            </div>
+            <img img src = "/assets/estate_app/homeland/images/img_7.jpg" alt="Image" class="img-fluid">
+          </a>
+          <div class="p-4 property-body">
+            <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+            <h2 class="property-title"><a href="property-details.html">625 S. Berendo St</a></h2>
+            <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 625 S. Berendo St Unit 607 Los Angeles, CA 90005</span>
+            <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
+            <ul class="property-specs-wrap mb-3 mb-lg-0">
+              <li>
+                <span class="property-specs">Beds</span>
+                <span class="property-specs-number">2 <sup>+</sup></span>
+                
+              </li>
+              <li>
+                <span class="property-specs">Baths</span>
+                <span class="property-specs-number">2</span>
+                
+              </li>
+              <li>
+                <span class="property-specs">SQ FT</span>
+                <span class="property-specs-number">7,000</span>
+                
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="property-entry h-100">
+          <a href="property-details.html" class="property-thumbnail">
+            <div class="offer-type-wrap">
+              <span class="offer-type bg-danger">Sale</span>
+              <span class="offer-type bg-success">Rent</span>
+            </div>
+            <img img src = "/assets/estate_app/homeland/images/img_8.jpg" alt="Image" class="img-fluid">
+          </a>
+          <div class="p-4 property-body">
+            <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+            <h2 class="property-title"><a href="property-details.html">871 Crenshaw Blvd</a></h2>
+            <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 1 New York Ave, Warners Bay, NSW 2282</span>
+            <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
+            <ul class="property-specs-wrap mb-3 mb-lg-0">
+              <li>
+                <span class="property-specs">Beds</span>
+                <span class="property-specs-number">2 <sup>+</sup></span>
+                
+              </li>
+              <li>
+                <span class="property-specs">Baths</span>
+                <span class="property-specs-number">2</span>
+                
+              </li>
+              <li>
+                <span class="property-specs">SQ FT</span>
+                <span class="property-specs-number">1,620</span>
+                
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="property-entry h-100">
+          <a href="property-details.html" class="property-thumbnail">
+            <div class="offer-type-wrap">
+              <span class="offer-type bg-info">Lease</span>
+            </div>
+            <img img src = "/assets/estate_app/homeland/images/img_1.jpg" alt="Image" class="img-fluid">
+          </a>
+          <div class="p-4 property-body">
+            <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+            <h2 class="property-title"><a href="property-details.html">853 S Lucerne Blvd</a></h2>
+            <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 853 S Lucerne Blvd Unit 101 Los Angeles, CA 90005</span>
+            <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
+            <ul class="property-specs-wrap mb-3 mb-lg-0">
+              <li>
+                <span class="property-specs">Beds</span>
+                <span class="property-specs-number">2 <sup>+</sup></span>
+                
+              </li>
+              <li>
+                <span class="property-specs">Baths</span>
+                <span class="property-specs-number">2</span>
+                
+              </li>
+              <li>
+                <span class="property-specs">SQ FT</span>
+                <span class="property-specs-number">5,500</span>
+                
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <div class="site-pagination">
+          {%if search %}
+            {% if prev %}
+            <a href="/?page={{prev}}" class="active">Previous</a>
+            {% endif %}
+            {% if next %}
+            <a href="/?page={{next}}" class="active">Next</a>
+            {% endif %}
+          {% else %}
+            {% if prev %}
+            <a href="/?page={{prev}}" class="active">Previous</a>
+            {% endif %}
+            {% if next %}
+            <a href="/?page={{next}}" class="active">Next</a>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>  
+    </div>
+    
+  </div>
+</div>
+
+<div class="site-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-7 text-center">
+        <div class="site-section-title">
+          <h2>Why Choose Us?</h2>
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis maiores quisquam saepe architecto error corporis aliquam. Cum ipsam a consectetur aut sunt sint animi, pariatur corporis, eaque, deleniti cupiditate officia.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 col-lg-4">
+        <a href="#" class="service text-center">
+          <span class="icon flaticon-house"></span>
+          <h2 class="service-heading">Research Subburbs</h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt iure qui natus perspiciatis ex odio molestia.</p>
+          <p><span class="read-more">Read More</span></p>
+        </a>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <a href="#" class="service text-center">
+          <span class="icon flaticon-sold"></span>
+          <h2 class="service-heading">Sold Houses</h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt iure qui natus perspiciatis ex odio molestia.</p>
+          <p><span class="read-more">Read More</span></p>
+        </a>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <a href="#" class="service text-center">
+          <span class="icon flaticon-camera"></span>
+          <h2 class="service-heading">Security Priority</h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt iure qui natus perspiciatis ex odio molestia.</p>
+          <p><span class="read-more">Read More</span></p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="site-section bg-light">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-7 text-center">
+        <div class="site-section-title">
+          <h2>Recent Blog</h2>
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis maiores quisquam saepe architecto error corporis aliquam. Cum ipsam a consectetur aut sunt sint animi, pariatur corporis, eaque, deleniti cupiditate officia.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up" data-aos-delay="100">
+        <a href="#"><img src="/assets/estate_app/homeland/images/img_4.jpg" alt="Image" class="img-fluid"></a>
+        <div class="p-4 bg-white">
+          <span class="d-block text-secondary small text-uppercase">Jan 20th, 2019</span>
+          <h2 class="h5 text-black mb-3"><a href="#">Art Gossip by Mike Charles</a></h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias enim, ipsa exercitationem veniam quae sunt.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up" data-aos-delay="200">
+        <a href="#"><img src="/assets/estate_app/homeland/images/img_2.jpg" alt="Image" class="img-fluid"></a>
+        <div class="p-4 bg-white">
+          <span class="d-block text-secondary small text-uppercase">Jan 20th, 2019</span>
+          <h2 class="h5 text-black mb-3"><a href="#">Art Gossip by Mike Charles</a></h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias enim, ipsa exercitationem veniam quae sunt.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up" data-aos-delay="300">
+        <a href="#"><img src="/assets/estate_app/homeland/images/img_3.jpg" alt="Image" class="img-fluid"></a>
+        <div class="p-4 bg-white">
+          <span class="d-block text-secondary small text-uppercase">Jan 20th, 2019</span>
+          <h2 class="h5 text-black mb-3"><a href="#">Art Gossip by Mike Charles</a></h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias enim, ipsa exercitationem veniam quae sunt.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<div class="site-section">
+<div class="container">
+  <div class="row mb-5 justify-content-center">
+    <div class="col-md-7">
+      <div class="site-section-title text-center">
+        <h2>Our Agents</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero magnam officiis ipsa eum pariatur labore fugit amet eaque iure vitae, repellendus laborum in modi reiciendis quis! Optio minima quibusdam, laboriosam.</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-md-6 col-lg-4 mb-5 mb-lg-5">
+        <div class="team-member">
+
+          <img src="/assets/estate_app/homeland/images/person_1.jpg" alt="Image" class="img-fluid rounded mb-4">
+
+          <div class="text">
+
+            <h2 class="mb-2 font-weight-light text-black h4">Megan Smith</h2>
+            <span class="d-block mb-3 text-white-opacity-05">Real Estate Agent</span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi dolorem totam non quis facere blanditiis praesentium est. Totam atque corporis nisi, veniam non. Tempore cupiditate, vitae minus obcaecati provident beatae!</p>
+            <p>
+              <a href="#" class="text-black p-2"><span class="icon-facebook"></span></a>
+              <a href="#" class="text-black p-2"><span class="icon-twitter"></span></a>
+              <a href="#" class="text-black p-2"><span class="icon-linkedin"></span></a>
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 mb-5 mb-lg-5">
+        <div class="team-member">
+
+          <img src="/assets/estate_app/homeland/images/person_2.jpg" alt="Image" class="img-fluid rounded mb-4">
+
+          <div class="text">
+
+            <h2 class="mb-2 font-weight-light text-black h4">Brooke Cagle</h2>
+            <span class="d-block mb-3 text-white-opacity-05">Real Estate Agent</span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, cumque vitae voluptates culpa earum similique corrupti itaque veniam doloribus amet perspiciatis recusandae sequi nihil tenetur ad, modi quos id magni!</p>
+            <p>
+              <a href="#" class="text-black p-2"><span class="icon-facebook"></span></a>
+              <a href="#" class="text-black p-2"><span class="icon-twitter"></span></a>
+              <a href="#" class="text-black p-2"><span class="icon-linkedin"></span></a>
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 mb-5 mb-lg-5">
+        <div class="team-member">
+
+          <img src="/assets/estate_app/homeland/images/person_3.jpg" alt="Image" class="img-fluid rounded mb-4">
+
+          <div class="text">
+
+            <h2 class="mb-2 font-weight-light text-black h4">Philip Martin</h2>
+            <span class="d-block mb-3 text-white-opacity-05">Real Estate Agent</span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores illo iusto, inventore, iure dolorum officiis modi repellat nobis, praesentium perspiciatis, explicabo. Atque cupiditate, voluptates pariatur odit officia libero veniam quo.</p>
+            <p>
+              <a href="#" class="text-black p-2"><span class="icon-facebook"></span></a>
+              <a href="#" class="text-black p-2"><span class="icon-twitter"></span></a>
+              <a href="#" class="text-black p-2"><span class="icon-linkedin"></span></a>
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      
+
+    </div>
+</div>
+</div>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import frappe
+from estate_app.www.utils import paginate
+
+# def get_context(context):
+#     page = frappe.form_dict.page
+#     conditions = ""
+
+#     # Retrieve filter values from form_dict
+#     type = frappe.form_dict.type
+#     status = frappe.form_dict.status
+#     city = frappe.form_dict.city
+#     search_query = frappe.form_dict.search_query
+
+#     # Construct conditions based on filter values
+#     if type and status and city:
+#         conditions = f"WHERE property_types = '{type}' AND city = '{city}' AND status = '{status}'"
+#     elif type and status:
+#         conditions = f"WHERE property_types = '{type}' AND status = '{status}'"
+#     elif type and city:
+#         conditions = f"WHERE property_types = '{type}' AND city = '{city}'"
+#     elif status and city:
+#         conditions = f"WHERE status = '{status}' AND city = '{city}'"
+#     elif type:
+#         conditions = f"WHERE property_types = '{type}'"
+#     elif status:
+#         conditions = f"WHERE status = '{status}'"
+#     elif city:
+#         conditions = f"WHERE city = '{city}'"
+#     else:
+#         conditions = ""  
+
+#     # Add search query condition
+#     if search_query:
+#         if conditions:
+#             conditions = f" AND (property_name LIKE '%{search_query}%' OR address LIKE '%{search_query}%')"
+#         else:
+#             conditions = f"WHERE (property_name LIKE '%{search_query}%' OR address LIKE '%{search_query}%')"
+
+#     # Perform pagination with conditions
+#     pagination = paginate(doctype='Property', page=page, conditions=conditions)
+
+#     # Retrieve cities and types
+#     context.cities = frappe.db.sql("""SELECT name FROM `tabCity`;""", as_dict=True)
+#     context.types = frappe.db.sql("""SELECT name FROM `tabProperty Type`;""", as_dict=True)
+
+#     # Populate context with properties and pagination info
+#     context.properties = pagination.get('properties')
+#     context.prev = pagination.get('prev')
+#     context.next = pagination.get('next')
+
+#     return context
+
+
+def get_context(context):
+    page = frappe.form_dict.page
+    # check if search request
+    conditions = " "
+    type, status, city = frappe.form_dict.type, frappe.form_dict.status, frappe.form_dict.city
+    if(type and status and city):
+        conditions = f"""WHERE property_type='{type}' AND city='{city}' AND status='{status}'"""
+        context.type = type
+        context.status = status
+        context.city = city
+    pagination = paginate(doctype='Property', page=page, conditions=conditions) #pass to pagination
+    context.cities = frappe.db.sql("""SELECT name FROM `tabCity`;""", as_dict=True)
+    context.types = frappe.db.sql("""SELECT name FROM `tabProperty Type`;""", as_dict=True)
+    context.properties = pagination.get('properties')
+    context.search = pagination.get('search')
+    context.prev = pagination.get('prev')
+    context.next = pagination.get('next')
+
+    return context

@@ -1,0 +1,197 @@
+{
+ "actions": [],
+ "autoname": "PR.####",
+ "creation": "2023-06-27 12:23:25.910433",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "property_name",
+  "column_break_gk4hn",
+  "property_type",
+  "status",
+  "column_break_rlm5j",
+  "owner_name",
+  "section_break_86uqk",
+  "address",
+  "column_break_daagv",
+  "city",
+  "column_break_u1np9",
+  "image",
+  "section_break_alfqn",
+  "name_of_agent",
+  "property_price",
+  "column_break_qzfj0",
+  "agent_id",
+  "discount",
+  "section_break_qysbn",
+  "description",
+  "grand_total",
+  "amentiy_section",
+  "amenities",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "property_type",
+   "fieldtype": "Link",
+   "label": "Property Type",
+   "options": "Property Type"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "\nRent\nSale\nLease"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Property Image"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "label": "Address"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "fetch_from": "agent_id.agent_name",
+   "fetch_if_empty": 1,
+   "fieldname": "name_of_agent",
+   "fieldtype": "Data",
+   "label": "Name of Agent"
+  },
+  {
+   "fieldname": "column_break_gk4hn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_86uqk",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_qzfj0",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_qysbn",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "property_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Property Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "amenities",
+   "fieldtype": "Table",
+   "label": "Amenities",
+   "options": "Property Amenity Detail"
+  },
+  {
+   "fieldname": "property_price",
+   "fieldtype": "Currency",
+   "label": "Property Price",
+   "reqd": 1
+  },
+  {
+   "fieldname": "discount",
+   "fieldtype": "Percent",
+   "label": "Discount"
+  },
+  {
+   "fieldname": "grand_total",
+   "fieldtype": "Currency",
+   "label": "Grand Total",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "amentiy_section",
+   "fieldtype": "Section Break",
+   "label": "Amentiy Section"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "owner_name",
+   "fieldtype": "Data",
+   "label": "Owner Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_rlm5j",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "label": "City ",
+   "options": "City"
+  },
+  {
+   "fieldname": "column_break_daagv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_alfqn",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_u1np9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "agent_id",
+   "fieldtype": "Link",
+   "label": "Agent ID",
+   "options": "Agent"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Property",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-07-21 16:32:01.940353",
+ "modified_by": "Administrator",
+ "module": "Estate App",
+ "name": "Property",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

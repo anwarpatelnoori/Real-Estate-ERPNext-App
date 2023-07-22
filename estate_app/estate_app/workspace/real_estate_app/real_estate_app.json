@@ -1,0 +1,91 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"pS-rFA7apy\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Real Estate App</span>\",\"col\":12}},{\"id\":\"A4_OrgNlpl\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Property\",\"col\":3}},{\"id\":\"hGpJ2LvpIt\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Property Type\",\"col\":3}},{\"id\":\"FdjD7DWtxY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Property Amenity Item\",\"col\":3}},{\"id\":\"h4YJkpMxAQ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"City\",\"col\":3}},{\"id\":\"LeZeYJ-4RJ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Map\",\"col\":3}},{\"id\":\"vpG3JrZTTx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Agent\",\"col\":3}},{\"id\":\"dnDn-58z4s\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Property Report\",\"col\":3}},{\"id\":\"5-ipKGc_j-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Estate Page Charts\",\"col\":3}},{\"id\":\"_0gBSeABc-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Estate App SQL Query\",\"col\":3}}]",
+ "creation": "2023-07-03 13:35:53.670785",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Real Estate App",
+ "links": [],
+ "modified": "2023-07-18 20:43:55.240263",
+ "modified_by": "Administrator",
+ "module": "Estate App",
+ "name": "Real Estate App",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 1.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Estate Page Charts",
+   "link_to": "real-estate-stats-",
+   "type": "Page"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "label": "Property",
+   "link_to": "Property",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Property Report",
+   "link_to": "Property",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Estate App SQL Query",
+   "link_to": "database-console",
+   "type": "Page"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Property Type",
+   "link_to": "Property Type",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "City",
+   "link_to": "City",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Map",
+   "link_to": "Map",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Property Amenity Item",
+   "link_to": "Property Amenity Item",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Agent",
+   "link_to": "Agent",
+   "type": "DocType"
+  }
+ ],
+ "title": "Real Estate App"
+}

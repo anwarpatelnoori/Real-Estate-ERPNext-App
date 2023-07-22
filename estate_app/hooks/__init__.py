@@ -1,4 +1,7 @@
-from . import __version__ as app_version
+from .. import __version__ as app_version
+from .route import routes
+from .jinja import jenvs
+from .doc_events import doc_events
 
 app_name = "estate_app"
 app_title = "Estate App"
@@ -29,7 +32,9 @@ app_license = "MIT"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+# doctype_js = {
+# "Property" : "doctype/copy_child_data_from_property/copy_child_data_from_propety.js"
+# }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -44,7 +49,8 @@ app_license = "MIT"
 # role_home_page = {
 #	"Role": "home_page"
 # }
-
+website_route_rules = routes
+jenv = jenvs
 # Generators
 # ----------
 
@@ -102,14 +108,7 @@ app_license = "MIT"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-#	"*": {
-#		"on_update": "method",
-#		"on_cancel": "method",
-#		"on_trash": "method"
-#	}
-# }
-
+doc_events = doc_events
 # Scheduled Tasks
 # ---------------
 
